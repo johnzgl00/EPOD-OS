@@ -1,13 +1,9 @@
-from PIL import Image
-from PIL import ImageDraw
-from PIL import ImageFont
-import ST7735 as TFT
-import Adafruit_GPIO as GPIO
 import Adafruit_GPIO.SPI as SPI
 import RPi.GPIO as GPIO
 import time
 import socket
 import subprocess as sb
+import script
 
 WIDTH = 128
 HEIGHT = 160
@@ -17,8 +13,9 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(16, GPIO.IN)
 GPIO.setup(12, GPIO.IN)
 
-hostname = sb.check_output(['hostname'])
-ip_address = sb.check_output(['hostname', '-i'])
+ip = str(sb.check_output(["./getip.sh"])).replace("\n", " ")
+hostname = str(sb.check_output(['hostname'])).replace("\n", " ")
+loop = True
 
 DC = 24
 RST = 25
@@ -57,12 +54,17 @@ def draw_rotated_text(image, text, position, angle, font, fill=(255,255,255)):
     image.paste(rotated, position, rotated)
 
 def show():
-    #TITLE
-    draw_rotated_text(disp.buffer, "E", (117, 75), 270, font, fill=(0,255,0))
-    draw_rotated_text(disp.buffer, "POD", (117, 81), 270, font, fill=(255,255,255))
-
-    draw_rotated_text(disp.buffer, f"Hostname: " + hostname, (100, 40), 270, font, fill=(255,255,255))
-    draw_rotated_text(disp.buffer, f"Ip-Address: " + ip_address, (90, 40), 270, font, fill=(255,255,255))
-    draw_rotated_text(disp.buffer, f"Device: E-POD", (80, 40), 270, font, fill=(255,255,255))
-    draw_rotated_text(disp.buffer, f"H-Version: v1.0.0", (70, 40), 270, font, fill=(255,255,255))
-    draw_rotated_text(disp.buffer, f"S-Version: v1.0.1", (60, 40), 270, font, fill=(255,255,255))
+    loop = True
+    while loop:
+        #TITLE
+        draw_rotated_text(disp.buffer, "E", (117, 75), 270, font, fill=(0,255,0))
+        draw_rotated_text(disp.buffer, "POD", (117, 81), 270, font, fill=(255,255,255))
+        draw_rotated_text(disp.buffer, "Hostname: " + hostname, (90, 7), 270, font, fill=(255,255,255))
+        draw_rotated_text(disp.buffer, "Ip-Address: " + ip, (80, 7), 270, font, fill=(255,255,255))
+        draw_rotated_text(disp.buffer, "Device: E-POD", (70, 7), 270, font, fill=(255,255,255))
+        draw_rotated_text(disp.buffer, "H-Version: v1.0.0", (60, 7), 270, font, fill=(255,255,255))
+        draw_rotated_text(disp.buffer, "S-Version: v1.0.1", (50, 7), 270, font, fill=(255,255,255))
+        disp.display()
+        if GPIO.input(12):
+            loop = False
+    script.main()
