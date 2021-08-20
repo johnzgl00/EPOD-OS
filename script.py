@@ -89,19 +89,22 @@ while not selected_mode:
         draw_rotated_text(disp.buffer, "Demo Mode", (50 ,58), 270, font, fill=(255,0,255))
     elif option == 3:
         option = 1
-    elif GPIO.input(12):
+    if GPIO.input(12):
         selected_mode = True
+        time.sleep(0.2)
     disp.display()
     time.sleep(0.1)
-
+print("passed")
 if option == 1:
     disp.clear((0,0,0))
     draw_rotated_text(disp.buffer, "Hacking Mode", (60 ,50), 270, font, fill=(0,0,255))
+    disp.display()
     time.sleep(1.5)
     disp.clear((0,0,0))
 elif option == 2:
     disp.clear((0,0,0))
     draw_rotated_text(disp.buffer, "Demo Mode", (60 ,58), 270, font, fill=(255,0,255))
+    disp.display()
     time.sleep(1.5)
     disp.clear((0,0,0))
 disp.display()
