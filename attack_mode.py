@@ -56,20 +56,20 @@ def draw_rotated_text(image, text, position, angle, font, fill=(255,255,255)):
 def show():
     selection = 0
     loop = True
+    #TITLE
+    draw_rotated_text(disp.buffer, "E", (117, 75), 270, font, fill=(0,255,0))
+    draw_rotated_text(disp.buffer, "POD", (117, 81), 270, font, fill=(255,255,255))
+    draw_rotated_text(disp.buffer, "Nmap", (110, 10), 270, font, fill=(255,255,255))
+    draw_rotated_text(disp.buffer, "HPing3", (100, 10), 270, font, fill=(255,255,255))
+    draw_rotated_text(disp.buffer, "Nikto", (90, 10), 270, font, fill=(255,255,255))
+    draw_rotated_text(disp.buffer, "Wifite", (80, 10), 270, font, fill=(255,255,255))
+    draw_rotated_text(disp.buffer, "Dirbuster", (70, 10), 270, font, fill=(255,255,255))
+    draw_rotated_text(disp.buffer, "Gobuster", (60, 10), 270, font, fill=(255,255,255))
+    draw_rotated_text(disp.buffer, "Aircrack-ng", (50, 10), 270, font, fill=(255,255,255))
+    draw_rotated_text(disp.buffer, "Netdiscover", (40, 10), 270, font, fill=(255,255,255))
+    draw_rotated_text(disp.buffer, "Tshark", (30, 10), 270, font, fill=(255,255,255))
+    disp.display()
     while loop:
-        #TITLE
-        draw_rotated_text(disp.buffer, "E", (117, 75), 270, font, fill=(0,255,0))
-        draw_rotated_text(disp.buffer, "POD", (117, 81), 270, font, fill=(255,255,255))
-        draw_rotated_text(disp.buffer, "Nmap", (110, 10), 270, font, fill=(255,255,255))
-        draw_rotated_text(disp.buffer, "HPing3", (100, 10), 270, font, fill=(255,255,255))
-        draw_rotated_text(disp.buffer, "Nikto", (90, 10), 270, font, fill=(255,255,255))
-        draw_rotated_text(disp.buffer, "Wifite", (80, 10), 270, font, fill=(255,255,255))
-        draw_rotated_text(disp.buffer, "Dirbuster", (70, 10), 270, font, fill=(255,255,255))
-        draw_rotated_text(disp.buffer, "Gobuster", (60, 10), 270, font, fill=(255,255,255))
-        draw_rotated_text(disp.buffer, "Aircrack-ng", (50, 10), 270, font, fill=(255,255,255))
-        draw_rotated_text(disp.buffer, "Netdiscover", (40, 10), 270, font, fill=(255,255,255))
-        draw_rotated_text(disp.buffer, "Tshark", (30, 10), 270, font, fill=(255,255,255))
-        disp.display()
         if GPIO.input(16):
             selection = selection + 1
             if selection == 1:
