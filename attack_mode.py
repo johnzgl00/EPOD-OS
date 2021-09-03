@@ -68,6 +68,7 @@ def show():
         draw_rotated_text(disp.buffer, "Aircrack-ng", (50, 10), 270, font, fill=(255,255,255))
         draw_rotated_text(disp.buffer, "Netdiscover", (40, 10), 270, font, fill=(255,255,255))
         draw_rotated_text(disp.buffer, "Tshark", (30, 10), 270, font, fill=(255,255,255))
+        disp.display()
         if GPIO.input(16):
             selection = selection + 1
             if selection == 1:
@@ -162,6 +163,7 @@ def show():
                 draw_rotated_text(disp.buffer, "Tshark", (30, 10), 270, font, fill=(0,255,0))
             if selection <= 10:
                 selection = 1
+            disp.display()
             time.sleep(0.1)
         disp.display()
         if GPIO.input(12):
