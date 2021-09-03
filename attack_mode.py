@@ -172,7 +172,7 @@ def show():
                 draw_rotated_text(disp.buffer, "Tshark", (30, 10), 270, font, fill=(0,255,0))
                 disp.display()
             if selection == 10:
-                selection = 1
+                selection = 0
             time.sleep(0.1)
         disp.display()
         if GPIO.input(12):
