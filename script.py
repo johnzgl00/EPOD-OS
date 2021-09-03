@@ -2,6 +2,7 @@ from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 
+import attack_mode
 import demo_mode
 import ST7735 as TFT
 import Adafruit_GPIO as GPIO
@@ -98,7 +99,7 @@ def main():
             time.sleep(0.2)
         disp.display()
         time.sleep(0.1)
-    print("passed")
+    #print("passed")
     selected_mode = False
     if option == 1:
         disp.clear((0,0,0))
@@ -106,6 +107,7 @@ def main():
         disp.display()
         time.sleep(1.5)
         disp.clear((0,0,0))
+        attack_mode.show()
     elif option == 2:
         disp.clear((0,0,0))
         draw_rotated_text(disp.buffer, "Demo Mode", (60 ,58), 270, font, fill=(255,0,255))
