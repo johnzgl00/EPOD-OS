@@ -54,6 +54,7 @@ def draw_rotated_text(image, text, position, angle, font, fill=(255,255,255)):
     image.paste(rotated, position, rotated)
 
 def show():
+    selection = 0
     loop = True
     while loop:
         #TITLE
